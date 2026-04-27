@@ -1,0 +1,8 @@
+:root {
+  --color-primary: #2f6f73;
+  --color-accent: #d99a3d;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+}
