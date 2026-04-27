@@ -1,6 +1,11 @@
-"""Drilldown page."""
+import dash
+from dash import html
 
-import streamlit as st
+dash.register_page(__name__, path="/drilldown")
 
-
-st.title("Drilldown")
+layout = html.Div([
+    html.Div(className="card", children=[
+        html.H3("Chapter 2 — Region drilldown"),
+        html.P("This page will host linked timeline + event-type breakdown.")
+    ])
+])

@@ -1,8 +1,8 @@
-__pycache__/
-*.py[cod]
-.venv/
-.env
-
-# Large source files and generated artifacts
 data/raw/
 data/processed/
+*.csv
+*.parquet
+*.pkl
+__pycache__/
+.venv/
+.DS_Store

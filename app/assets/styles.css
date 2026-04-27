@@ -1,8 +1,12 @@
-:root {
-  --color-primary: #2f6f73;
-  --color-accent: #d99a3d;
+:root{
+  --bg:#0b1220; --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.10);
+  --text:#e5e7eb; --muted:#94a3b8; --accent:#38bdf8;
 }
-
-body {
-  font-family: system-ui, sans-serif;
-}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Arial;}
+.container{max-width:1250px;margin:0 auto;padding:22px;}
+.hero{margin-bottom:16px;}
+.title{font-size:34px;font-weight:800;margin:0;}
+.subtitle{color:var(--muted);max-width:900px;line-height:1.35}
+.nav{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
+.navlink{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);text-decoration:none}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;margin:12px 0;}

@@ -1,6 +1,11 @@
-"""Overview page."""
+import dash
+from dash import html, dcc
 
-import streamlit as st
+dash.register_page(__name__, path="/")
 
-
-st.title("Overview")
+layout = html.Div([
+    html.Div(className="card", children=[
+        html.H3("Chapter 1 — Animated choropleth (coming next)"),
+        html.P("This page will host the main animated choropleth + filters + quick KPIs.")
+    ])
+])

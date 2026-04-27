@@ -1,8 +1,28 @@
-"""Main Streamlit app entry point."""
+from dash import Dash, html, dcc
+import dash
 
-import streamlit as st
+app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True, title="Storm → Grid (Python)")
+server = app.server
 
+app.layout = html.Div(
+    className="container",
+    children=[
+        html.Div(className="hero", children=[
+            html.H1("Storm → Grid", className="title"),
+            html.P(
+                "A Python-only interactive story connecting storm activity with grid stress. "
+                "Overview-first → filter → details-on-demand.",
+                className="subtitle"
+            ),
+            html.Div(className="nav", children=[
+                dcc.Link("Overview", href="/", className="navlink"),
+                dcc.Link("Drilldown", href="/drilldown", className="navlink"),
+                dcc.Link("Distributions", href="/distributions", className="navlink"),
+            ]),
+        ]),
+        dash.page_container
+    ]
+)
 
-st.set_page_config(page_title="Storm to Grid", layout="wide")
-st.title("Storm to Grid")
-st.write("Use the pages in the sidebar to explore storm and grid data.")
+if __name__ == "__main__":
+    app.run_server(debug=True)

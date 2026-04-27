@@ -1,6 +1,11 @@
-"""Distributions page."""
+import dash
+from dash import html
 
-import streamlit as st
+dash.register_page(__name__, path="/distributions")
 
-
-st.title("Distributions")
+layout = html.Div([
+    html.Div(className="card", children=[
+        html.H3("Chapter 3 — Distributions & extremes"),
+        html.P("This page will host log-binned histogram + ECDF/CCDF + outlier table.")
+    ])
+])
