@@ -10,13 +10,20 @@ dash.register_page(__name__, path="/distributions")
 df = pd.read_pickle("data/processed/outliers_state_day.pkl")
 df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
+METRIC_LABELS = {
+    "total_damage_usd": "Total Damage (USD)",
+    "fatalities": "Fatalities",
+    "storm_count": "Storm Count",
+    "severity": "Severity Score",
+}
+
 def make_ccdf(values, title, x_label):
     x = np.array(values, dtype=float)
     x = x[np.isfinite(x)]
     x = x[x > 0]
     x.sort()
 
-    # CCDF: P(X >= x)
+    # Complementary cumulative share: how many extreme state-days meet or exceed each value.
     n = len(x)
     if n == 0:
         fig = go.Figure()
@@ -26,12 +33,12 @@ def make_ccdf(values, title, x_label):
     y = 1.0 - (np.arange(1, n + 1) / n)
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="CCDF"))
+    fig.add_trace(go.Scatter(x=x, y=y, mode="lines", name="Extreme-state-day curve"))
 
     fig.update_layout(
         title=title,
         xaxis_title=x_label,
-        yaxis_title="P(X ≥ x)",
+        yaxis_title="Share of extreme state-days at or above this value",
         yaxis=dict(tickformat=".2f"),
         xaxis=dict(type="log"),  # log x-scale is standard for heavy tails
         margin=dict(l=40, r=20, t=50, b=40),
@@ -45,10 +52,10 @@ def make_ccdf(values, title, x_label):
 
 layout = html.Div([
     html.Div(className="card", children=[
-        html.H3("Chapter 3 — Distributions & extremes (CCDF)"),
+        html.H3("Chapter 3 — Distributions & extremes"),
         html.P(
-            "CCDF (complementary cumulative distribution) highlights tail behavior without histogram binning artifacts. "
-            "We use a log x-axis because storm damage is heavy-tailed.",
+            "This chart highlights how quickly extreme storm impacts taper off. "
+            "The x-axis uses a log scale because storm impacts are heavily skewed.",
             className="small",
         ),
 
@@ -78,5 +85,6 @@ layout = html.Div([
     Input("ccdf_metric", "value"),
 )
 def update_ccdf(metric):
-    title = f"CCDF of {metric} (2024) — how extreme is extreme?"
-    return make_ccdf(df[metric].fillna(0), title, metric)
+    metric_label = METRIC_LABELS.get(metric, metric.replace("_", " ").title())
+    title = f"Extreme-state-day distribution for {metric_label} (2024)"
+    return make_ccdf(df[metric].fillna(0), title, f"{metric_label} per state-day (log scale)")

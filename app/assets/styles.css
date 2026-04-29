@@ -1,12 +1,134 @@
 :root{
-  --bg:#0b1220; --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.10);
-  --text:#e5e7eb; --muted:#94a3b8; --accent:#38bdf8;
+  --bg:#0b1220;
+  --card:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.10);
+  --border2:rgba(255,255,255,.14);
+  --text:#e5e7eb;
+  --muted:#94a3b8;
 }
-html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,Segoe UI,Roboto,Arial;}
+
+html,body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(56,189,248,0.15), transparent 60%),
+              radial-gradient(900px 500px at 90% 0%, rgba(99,102,241,0.12), transparent 55%),
+              var(--bg);
+  color:var(--text);
+  font-family:system-ui,Segoe UI,Roboto,Arial;
+}
+
 .container{max-width:1250px;margin:0 auto;padding:22px;}
 .hero{margin-bottom:16px;}
-.title{font-size:34px;font-weight:800;margin:0;}
-.subtitle{color:var(--muted);max-width:900px;line-height:1.35}
-.nav{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap}
-.navlink{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text);text-decoration:none}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;margin:12px 0;}
+.title{font-size:38px;font-weight:900;margin:0;letter-spacing:-0.02em;}
+.subtitle{color:var(--muted);max-width:920px;line-height:1.45;margin-top:8px}
+
+.nav{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.navlink{
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  color:var(--text);
+  text-decoration:none;
+  transition: transform .08s ease, background .15s ease, border-color .15s ease;
+}
+.navlink:hover{transform:translateY(-1px);background:rgba(255,255,255,0.08);border-color:var(--border2);}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:18px;
+  margin:14px 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  overflow:hidden;
+}
+
+.card h3{margin:0 0 10px 0;font-size:18px}
+.small{font-size:12px;color:var(--muted);line-height:1.45}
+
+/* ----------------------------
+   Controls (3-col desktop)
+----------------------------- */
+.controls{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap:12px;
+  align-items:end;
+  margin:10px 0 22px;
+}
+
+@media (max-width: 1100px){
+  .controls{
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 900px){
+  .controls{
+    grid-template-columns: 1fr;
+  }
+}
+
+.control{ min-width:0; }
+
+label{
+  display:block;
+  margin-bottom:6px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* KPI cards (used on drilldown page) */
+.kpis{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:12px;
+  margin-top:10px;
+}
+@media(max-width:900px){ .kpis{grid-template-columns:1fr} }
+
+.kpi{
+  background:rgba(0,0,0,0.22);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+}
+.kpi .label{font-size:12px;color:var(--muted)}
+.kpi .value{font-size:22px;font-weight:900;margin-top:4px;letter-spacing:-0.01em}
+
+/* Separator */
+hr.sep{border:none;border-top:1px solid var(--border);margin:14px 0}
+
+/* ----------------------------
+   Dash Dropdown dark theme
+----------------------------- */
+.Select-control,
+.Select-menu-outer,
+.Select-option,
+.Select-placeholder{
+  background-color: rgba(0,0,0,0.22) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.Select-option.is-focused{
+  background-color: rgba(255,255,255,0.08) !important;
+}
+
+.Select--single>.Select-control .Select-value,
+.Select--single>.Select-control .Select-value-label{
+  color: var(--text) !important;
+}
+
+/* ----------------------------
+   Plotly polish
+----------------------------- */
+.js-plotly-plot .plotly .main-svg{
+  border-radius:14px;
+}
+
+/* Keep modebar from overlapping titles */
+.js-plotly-plot .plotly .modebar{
+  top:8px !important;
+}
