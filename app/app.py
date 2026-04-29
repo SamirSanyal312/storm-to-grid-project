@@ -18,6 +18,7 @@ app.layout = html.Div(
                 dcc.Link("Overview", href="/", className="navlink"),
                 dcc.Link("Drilldown", href="/drilldown", className="navlink"),
                 dcc.Link("Distributions", href="/distributions", className="navlink"),
+                dcc.Link("ML Insights", href="/ml", className="navlink"),
             ]),
         ]),
         dash.page_container

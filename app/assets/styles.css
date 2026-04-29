@@ -45,7 +45,11 @@ html,body{
 }
 
 .card h3{margin:0 0 10px 0;font-size:18px}
+.card h4{margin:18px 0 8px 0;font-size:15px}
 .small{font-size:12px;color:var(--muted);line-height:1.45}
+
+/* Head block spacing */
+.section-head{margin-bottom:10px}
 
 /* ----------------------------
    Controls (3-col desktop)
@@ -55,19 +59,14 @@ html,body{
   grid-template-columns: repeat(3, minmax(240px, 1fr));
   gap:12px;
   align-items:end;
-  margin:10px 0 22px;
+  margin:10px 0 18px;
 }
 
 @media (max-width: 1100px){
-  .controls{
-    grid-template-columns: repeat(2, minmax(240px, 1fr));
-  }
+  .controls{ grid-template-columns: repeat(2, minmax(240px, 1fr)); }
 }
-
 @media (max-width: 900px){
-  .controls{
-    grid-template-columns: 1fr;
-  }
+  .controls{ grid-template-columns: 1fr; }
 }
 
 .control{ min-width:0; }
@@ -79,7 +78,7 @@ label{
   font-size:12px;
 }
 
-/* KPI cards (used on drilldown page) */
+/* KPI cards */
 .kpis{
   display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -93,12 +92,23 @@ label{
   border:1px solid var(--border);
   border-radius:14px;
   padding:12px 14px;
+  min-height:86px;
 }
 .kpi .label{font-size:12px;color:var(--muted)}
-.kpi .value{font-size:22px;font-weight:900;margin-top:4px;letter-spacing:-0.01em}
+.kpi .value{
+  font-size:22px;
+  font-weight:900;
+  margin-top:6px;
+  letter-spacing:-0.01em;
+}
+.kpi .value.kpi-long{
+  font-size:16px;
+  font-weight:800;
+  line-height:1.25;
+}
 
 /* Separator */
-hr.sep{border:none;border-top:1px solid var(--border);margin:14px 0}
+hr.sep{border:none;border-top:1px solid var(--border);margin:16px 0}
 
 /* ----------------------------
    Dash Dropdown dark theme
@@ -111,11 +121,9 @@ hr.sep{border:none;border-top:1px solid var(--border);margin:14px 0}
   color: var(--text) !important;
   border: 1px solid var(--border) !important;
 }
-
 .Select-option.is-focused{
   background-color: rgba(255,255,255,0.08) !important;
 }
-
 .Select--single>.Select-control .Select-value,
 .Select--single>.Select-control .Select-value-label{
   color: var(--text) !important;
@@ -127,8 +135,46 @@ hr.sep{border:none;border-top:1px solid var(--border);margin:14px 0}
 .js-plotly-plot .plotly .main-svg{
   border-radius:14px;
 }
-
-/* Keep modebar from overlapping titles */
 .js-plotly-plot .plotly .modebar{
   top:8px !important;
+}
+
+/* ----------------------------
+   Tables (ML anomaly table)
+----------------------------- */
+.table-wrap{
+  background: rgba(0,0,0,0.18);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+}
+
+.data-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+.data-table thead th{
+  text-align:left;
+  font-size:12px;
+  color: var(--muted);
+  padding:10px 10px;
+  border-bottom:1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+}
+
+.data-table tbody td{
+  font-size:12px;
+  padding:9px 10px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.data-table tbody tr:nth-child(odd) td{
+  background: rgba(255,255,255,0.02);
+}
+.data-table tbody tr:hover td{
+  background: rgba(255,255,255,0.05);
 }
