@@ -13,4 +13,4 @@ import pandas as pd
 eia_daily = pd.read_pickle("data/processed/region_daily.pkl")
 print("Columns:", list(eia_daily.columns))
 print("Unique Region labels:", sorted(eia_daily["Region"].dropna().astype(str).unique())[:50])
-print("Count:", eia_daily["Region"].dropna().nunique())
+#print("Count:", eia_daily["Region"].dropna().nunique())
