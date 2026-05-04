@@ -166,5 +166,4 @@ Open:
 
 ---
 
-## License
-Add a license file if required by your course/repo policy (MIT is common).
+
